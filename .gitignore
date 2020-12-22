@@ -1,0 +1,10 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+# python
+dask-worker-space/
+*.pyc
+.ipynb_checkpoints/
+__pycache__/

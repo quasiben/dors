@@ -1,0 +1,28 @@
+Package: DORS
+Type: Package
+Title: Dask or RAPIDS SQL
+Version: 0.1.0
+Author: Who wrote it
+Maintainer: The package maintainer <yourself@somewhere.net>
+Description: Package Provides and DBI and DPLYR interfaces for Dask/Dask+RAPIDS
+    And BlazingSQL
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports:
+  DBI (>= 0.3.0),
+  reticulate,
+  dplyr,
+  methods
+Suggests:
+    testthat (>= 3.0.0)
+Roxygen: list(markdown = TRUE)
+StagedInstall: no
+RoxygenNote: 7.1.1
+Collate:
+    'package.R'
+    'dbi-dors-driver.R'
+    'dbi-dors-connection.R'
+    'dbi-dors-result.R'
+    'install.R'
+Config/testthat/edition: 3
