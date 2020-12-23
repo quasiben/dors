@@ -24,5 +24,6 @@ Collate:
     'dbi-dors-driver.R'
     'dbi-dors-connection.R'
     'dbi-dors-result.R'
+    'helpers.R'
     'install.R'
 Config/testthat/edition: 3

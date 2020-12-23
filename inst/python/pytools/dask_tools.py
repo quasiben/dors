@@ -12,8 +12,6 @@ def create_context():
     return ctx
 
 def create_context_distributed():
-    import sys
-    print(sys.path)
     from dask_sql import Context
     from dask.distributed import Client, LocalCluster
 
@@ -42,18 +40,19 @@ def create_blazing_context():
     ctx.dors_client = client
     return ctx
 
-# def create_sched():
-#     from dask.distributed import Scheduler
-    
 
-def create_data():
-    df = timeseries()
-    return df
+def create_timeseries(c, name='ts'):
+    df = dask.datasets.timeseries(
+                start="2000-01-01",
+                end="2000-01-31",
+                freq="10min",
+            )
+    create_table(c, name, df, npartitions=df.npartitions)
+
 
 def create_table(c, name, df, npartitions=1):
     if 'blazing' in repr(c).lower():
         c.create_table(name, df)
-        print(c.tables)
     if isinstance(df, pd.DataFrame):
         df = dd.from_pandas(df, npartitions=npartitions)
         c.create_table(name, df)

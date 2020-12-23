@@ -1,10 +1,17 @@
-library(reticulate)
-
 #' @include dbi-dors-result.R
 NULL
 
-python_path <- system.file("python", package = "DORS")
-pytools <- import_from_path("pytools", path = python_path, convert = FALSE)
+#' Run SQL through Dask/RAPIDS/Blazing Engine
+#'
+#' @param object res object
+#'
+#' @export
+run_sql <- function(res) {
+  python_path <- system.file("python", package = "DORS")
+  pytools <- reticulate::import_from_path("pytools", path = python_path, convert = FALSE)
+  df <- pytools$dask_tools$run_sql(res@connection, res@statement)
+  df
+}
 
 DORSResult <- function(connection, statement) {
   # TODO: Initialize result
@@ -47,11 +54,10 @@ setMethod(
 setMethod(
   "dbFetch", "DORSResult",
   function(res, n = -1, ...) {
-    df <- pytools$dask_sql$run_sql(res@connection, res@statement)
-    if (hasName(df, "to_arrow")) {
-      df <- df$to_arrow()
+    dfFetch <- run_sql(res)
+    if (hasName(dfFetch, "to_arrow")) {
+      dfFetch <- dfFetch$to_arrow()
     }
-    dfFetch <- reticulate::py_to_r(df)
     dfFetch
   })
 

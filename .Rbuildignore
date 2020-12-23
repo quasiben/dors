@@ -38,3 +38,5 @@
 ^doc$
 ^Meta$
 ^LICENSE\.md$
+
+^dask-worker-space/

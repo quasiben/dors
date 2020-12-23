@@ -1,28 +1,49 @@
-library(reticulate)
-
 #' @include package.R
 NULL
 
 #' @include dbi-dors-driver.R
 NULL
 
-python_path <- system.file("python", package = "DORS")
-pytools <- import_from_path("pytools", path = python_path)
 
+#' Create Dask-SQL/Dask/Blazing Contexts
+#'
+#' @param character choice of which context to create
+#'
+#' @export
+create_context <- function(CTX) {
+  python_path <- system.file("python", package = "DORS")
+  pytools <- reticulate::import_from_path("pytools", path = python_path, convert = FALSE)
+  if (CTX == "dask") {
+    con <- pytools$dask_tools$create_context()
+  }
+  else if (CTX == "distributed") {
+    con <- pytools$dask_tools$create_context_distributed()
+  }
+  else {
+    con <- pytools$dask_tools$create_blazing_context()
+  }
+  con
+}
+
+#' Create Table
+#'
+#' @param object connection object
+#' @param character name of the table
+#' @param dobject data frame object or distributed data frame to write to the table
+#'
+#' @export
+create_table <- function(conn, name, df) {
+  python_path <- system.file("python", package = "DORS")
+  pytools <- reticulate::import_from_path("pytools", path = python_path)
+  pytools$dask_tools$create_table(conn, name, df)
+  
+}
 #' Create Dask SQL or BlazingSQL Connection
 #'
 #' @param CTX character (dask or blazing)
 #' @return \code{DORSConnection}
 DORSConnection <- function(CTX = "dask") {
-  if (CTX == "dask") {
-    con <- pytools$dask_sql$create_context()
-  }
-  else if (CTX == "distributed") {
-    con <- pytools$dask_sql$create_context_distributed()
-  }
-  else {
-    con <- pytools$create_blazing_context()
-  }
+  con <- create_context(CTX)
   structure(
     con,
     class = c("DORSConnection", class(con), "DBIConnection")
@@ -140,7 +161,7 @@ setMethod(
   "dbWriteTable", c("DORSConnection", "character", "data.frame"),
   function(conn, name, value, overwrite = FALSE, append = FALSE, ...) {
     df <- reticulate::r_to_py(value)
-    pytools$dask_sql$create_table(conn, name, df)
+    create_table(conn, name, df)
   })
 
 #' @rdname DBI
@@ -153,7 +174,7 @@ setMethod(
 setMethod(
   "dbWriteTable", c("DORSConnection", "character", "character"),
   function(conn, name, value, overwrite = FALSE, append = FALSE, ...) {
-    pytools$dask_sql$create_table(conn, name, value)
+    create_table(conn, name, value)
   })
 
 #' @rdname DBI
