@@ -26,5 +26,5 @@ jobs:
           
       - name: Run tests
         shell: bash -l {0}
-        run: pip install -e .[all]
+        run: R CMD check .
 
