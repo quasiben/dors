@@ -23,7 +23,7 @@ NULL
   if (is.na(java_home)) {
    if (!(is.na(CONDA_PREFIX))) {
      Sys.setenv(JAVA_HOME = CONDA_PREFIX)
-     os <- import("os")
+     os <- reticulate::import("os")
      reticulate::py_set_item(os$environ, "JAVA_HOME", CONDA_PREFIX)
      }
    }
