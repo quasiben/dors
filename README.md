@@ -1,6 +1,16 @@
 
 ##  Dask or RAPIDS SQL (DORS)
 
+![](dors.gif)
+
+## Usage
+
+```R
+library(DORS)
+db <- dbConnect(DORS::DORS(), CTX = 'distributed')
+dbWriteTable(db, "mtcars", mtcars)
+res <- dbGetQuery(db, "SELECT * FROM mtcars WHERE cyl > 4")
+```
 
 ## Setup
 

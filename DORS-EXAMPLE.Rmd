@@ -1,0 +1,53 @@
+---
+title: "DORS-EXAMPLE"
+output: html_document
+---
+
+```{r setup}
+# devtools::install_github('quasiben/dors')
+library(reticulate)
+use_condaenv("dors")
+library(DORS)
+```
+
+## Create Client
+```{r}
+db <- dbConnect(DORS::DORS(), CTX = 'distributed')
+print(db$dors_client)
+```
+
+## Copy Data to Dask
+```{r}
+dbWriteTable(db, "mtcars", mtcars)
+```
+
+## Run SQL with Dask Enginge
+```{r}
+res <- dbGetQuery(db, "SELECT * FROM mtcars WHERE cyl > 4")
+res
+```
+
+
+## Read Data from Disk
+```{r}
+dbWriteTable(db, "taxi", "./sample_taxi.parquet")
+avg_trip <- dbGetQuery(db, "select avg(trip_distance), passenger_count 
+                       from taxi 
+                       group by passenger_count")
+```
+
+## Use Example Timeseries Data
+```{r}
+create_timeseries(db, 'ts1')
+create_timeseries(db, 'ts2')
+ex <- dbGetQuery(db, "select * from ts1 limit 5")
+```
+
+## Join Example
+```{r}
+j_ex <- dbGetQuery(db, "select lhs.id, lhs.name, rhs.name 
+                       from ts1 as lhs
+                       INNER JOIN ts2 as rhs
+                       ON
+                       lhs.id = rhs.id")
+```
