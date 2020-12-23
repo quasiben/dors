@@ -58,6 +58,10 @@ setMethod(
     if (hasName(dfFetch, "to_arrow")) {
       dfFetch <- dfFetch$to_arrow()
     }
+    
+    else if (inherits(dfFetch, "python.builtin.object")) {
+      dfFetch <- reticulate::py_to_r(dfFetch)
+    }
     dfFetch
   })
 
