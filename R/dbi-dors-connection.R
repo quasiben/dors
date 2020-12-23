@@ -10,17 +10,17 @@ NULL
 #' @param character choice of which context to create
 #'
 #' @export
-create_context <- function(CTX) {
+create_context <- function(CTX, SCHEDULER = FALSE) {
   python_path <- system.file("python", package = "DORS")
   pytools <- reticulate::import_from_path("pytools", path = python_path, convert = FALSE)
   if (CTX == "dask") {
     con <- pytools$dask_tools$create_context()
   }
   else if (CTX == "distributed") {
-    con <- pytools$dask_tools$create_context_distributed()
+    con <- pytools$dask_tools$create_context_distributed(SCHEDULER)
   }
   else {
-    con <- pytools$dask_tools$create_blazing_context()
+    con <- pytools$dask_tools$create_blazing_context(SCHEDULER)
   }
   con
 }
@@ -42,8 +42,8 @@ create_table <- function(conn, name, df) {
 #'
 #' @param CTX character (dask or blazing)
 #' @return \code{DORSConnection}
-DORSConnection <- function(CTX = "dask") {
-  con <- create_context(CTX)
+DORSConnection <- function(CTX = "dask", SCHEDULER) {
+  con <- create_context(CTX, SCHEDULER)
   structure(
     con,
     class = c("DORSConnection", class(con), "DBIConnection")

@@ -45,9 +45,9 @@ setMethod(
 #' @export
 setMethod(
   "dbConnect", "DORSDriver",
-  function(drv, CTX = "dask", ...) {
+  function(drv, CTX = "dask", SCHEDULER = FALSE) {
     # TODO: Remove skip() call
-    DORSConnection(CTX)
+    DORSConnection(CTX, SCHEDULER)
   }
 )
 

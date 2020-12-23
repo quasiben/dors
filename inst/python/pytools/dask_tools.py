@@ -11,29 +11,35 @@ def create_context():
     ctx.dors_client = False
     return ctx
 
-def create_context_distributed():
+def create_context_distributed(sched):
     from dask_sql import Context
-    from dask.distributed import Client, LocalCluster
+    from dask.distributed import Client
 
     # Need dev version 1.18+ of reticulate
     # Error: C stack usage   is too close to the limit
     # devtools::install_github('rstudio/reticulate')
-    client = Client()
+    if sched:
+        client = Client(sched)
+    else:
+        client = Client()
     ctx = Context()
 
     # FIX: develop better client handling on the R side
     ctx.dors_client = client
     return ctx
 
-def create_blazing_context():
+def create_blazing_context(sched):
     from blazingsql import BlazingContext
     from dask.distributed import Client
     from dask_cuda import LocalCUDACluster
-
-    cluster = LocalCUDACluster()
-    # Need dev version 1.18+ of reticulate
-    # Error: C stack usage  193896484868 is too close to the limit
-    client = Client(cluster)
+    
+    if not sched:
+        cluster = LocalCUDACluster()
+        # Need dev version 1.18+ of reticulate
+        # Error: C stack usage  193896484868 is too close to the limit
+        client = Client(cluster)
+    else:
+        client = Client(sched)
     ctx = BlazingContext(dask_client = client, network_interface = 'lo')
     
     # FIX: develop better client handling on the R side
