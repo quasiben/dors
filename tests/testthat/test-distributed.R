@@ -14,5 +14,5 @@ test_that("select all", {
   res <- dbGetQuery(db, "SELECT * FROM example")
   dbDisconnect(db)
   print(db$dors_client$scheduler)
-  expect_true(is.null(py_to_r(db$dors_client$scheduler)))
+  expect_true(is.null(reticulate::py_to_r(db$dors_client$scheduler)))
 })
