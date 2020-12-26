@@ -1,5 +1,8 @@
 #' Dask or Rapids SQL for R
-NULL
+"_PACKAGE"
+
+# Main DORS module
+DORS <- NULL
 
 # globals
 .globals <- new.env(parent = emptyenv())

@@ -45,7 +45,7 @@
 \usage{
 \S4method{show}{DORSDriver}(object)
 
-\S4method{dbConnect}{DORSDriver}(drv, CTX = "dask", ...)
+\S4method{dbConnect}{DORSDriver}(drv, CTX = "dask", SCHEDULER = FALSE)
 
 \S4method{dbDataType}{DORSDriver,ANY}(dbObj, obj, ...)
 
@@ -120,14 +120,14 @@ object (in order to clone an existing connection).}
 
 \item{CTX}{character (dask or blazing)}
 
-\item{...}{authentication arguments needed by the DBMS instance; these
-typically include \code{user}, \code{password}, \code{host}, \code{port}, \code{dbname}, etc.
-For details see the appropriate \code{DBIDriver}.}
-
 \item{dbObj}{A object inheriting from \linkS4class{DBIDriver}
 or \linkS4class{DBIConnection}}
 
 \item{obj}{An R object whose SQL type we want to determine.}
+
+\item{...}{authentication arguments needed by the DBMS instance; these
+typically include \code{user}, \code{password}, \code{host}, \code{port}, \code{dbname}, etc.
+For details see the appropriate \code{DBIDriver}.}
 
 \item{conn}{A \linkS4class{DBIConnection} object, as returned by
 \code{\link[DBI:dbConnect]{dbConnect()}}.}

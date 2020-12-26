@@ -4,7 +4,7 @@
 \alias{DORSConnection}
 \title{Create Dask SQL or BlazingSQL Connection}
 \usage{
-DORSConnection(CTX = "dask")
+DORSConnection(CTX = "dask", SCHEDULER)
 }
 \arguments{
 \item{CTX}{character (dask or blazing)}
