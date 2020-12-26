@@ -2,6 +2,7 @@
 % Please edit documentation in R/dbi-dors-driver.R
 \name{DORS}
 \alias{DORS}
+\alias{DORS-driver}
 \title{DORS driver}
 \usage{
 DORS()

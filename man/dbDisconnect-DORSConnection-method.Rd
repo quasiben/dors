@@ -8,7 +8,7 @@
 \S4method{dbDisconnect}{DORSConnection}(conn, ...)
 }
 \arguments{
-\item{conn}{object DB connection object
+\item{DORSConnection}{object DB connection object
 #' @export}
 }
 \description{

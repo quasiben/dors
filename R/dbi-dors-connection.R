@@ -90,7 +90,7 @@ setMethod(
 
 #' #' @rdname DBI
 #' #' @inheritParams DBI::dbDisconnect
-#' @param conn object DB connection object
+#' @param DORSConnection object DB connection object
 #' #' @export
 setMethod(
   "dbDisconnect", "DORSConnection",

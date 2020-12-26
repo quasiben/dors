@@ -1,4 +1,3 @@
-library(reticulate)
 library(DBI)
 
 #' @include package.R
@@ -14,6 +13,7 @@ NULL
 #'
 #' TBD.
 #'
+#' @aliases DORS-driver
 #' @export
 #' @import methods DBI
 #' @examples
