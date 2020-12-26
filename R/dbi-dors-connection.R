@@ -42,6 +42,7 @@ create_table <- function(conn, name, df) {
 #' Create Dask SQL or BlazingSQL Connection
 #'
 #' @param CTX character (dask or blazing)
+#' @param SCHEDULER character
 #' @return \code{DORSConnection}
 DORSConnection <- function(CTX = "dask", SCHEDULER) {
   con <- create_context(CTX, SCHEDULER)
@@ -89,6 +90,7 @@ setMethod(
 
 #' #' @rdname DBI
 #' #' @inheritParams DBI::dbDisconnect
+#' @param conn object DB connection object
 #' #' @export
 setMethod(
   "dbDisconnect", "DORSConnection",

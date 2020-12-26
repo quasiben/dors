@@ -1,6 +1,6 @@
 #' Install Python Dependencies
 #'
-#' @param character environment name
+#' @param envname character environment name
 #'
 #' @export
 install_dors <- function(envname = "r-reticulate") {

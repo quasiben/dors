@@ -7,7 +7,7 @@
 install_dors(envname = "r-reticulate")
 }
 \arguments{
-\item{character}{environment name}
+\item{envname}{character environment name}
 }
 \description{
 Install Python Dependencies

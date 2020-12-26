@@ -3,7 +3,7 @@ NULL
 
 #' Run SQL through Dask/RAPIDS/Blazing Engine
 #'
-#' @param object res object
+#' @param res object res object containing sql statement and db connection
 #'
 #' @export
 run_sql <- function(res) {

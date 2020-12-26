@@ -3,13 +3,15 @@
 \name{dbDisconnect,DORSConnection-method}
 \alias{dbDisconnect,DORSConnection-method}
 \title{#' @rdname DBI
-#' @inheritParams DBI::dbDisconnect
-#' @export}
+#' @inheritParams DBI::dbDisconnect}
 \usage{
 \S4method{dbDisconnect}{DORSConnection}(conn, ...)
+}
+\arguments{
+\item{conn}{object DB connection object
+#' @export}
 }
 \description{
 #' @rdname DBI
 #' @inheritParams DBI::dbDisconnect
-#' @export
 }

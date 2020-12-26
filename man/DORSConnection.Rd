@@ -8,6 +8,8 @@ DORSConnection(CTX = "dask", SCHEDULER)
 }
 \arguments{
 \item{CTX}{character (dask or blazing)}
+
+\item{SCHEDULER}{character}
 }
 \value{
 \code{DORSConnection}
