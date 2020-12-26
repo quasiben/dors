@@ -13,7 +13,7 @@ DORS <- NULL
   CONDA_PREFIX <- Sys.getenv("CONDA_PREFIX", unset = NA)
   if (!(is.na(CONDA_PREFIX))) {
     
-    CONDA_ENV <- sapply(strsplit(CONDA_PREFIX, "/"), tail, 1)
+    CONDA_ENV <- dplyr::last(strsplit(CONDA_PREFIX, '/')[[1]])
     reticulate::use_condaenv(CONDA_ENV)
     dors_python <- paste(CONDA_PREFIX, "/bin/python", sep = "")
     Sys.setenv(RETICULATE_PYTHON = dors_python)
