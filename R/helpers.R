@@ -1,7 +1,7 @@
 #' Helper Function to Load Random Timeseries
 #'
-#' @param object DB context
-#' @param character name of the table (default: ts)
+#' @param CTX object DB context
+#' @param name character name of the table (default: ts)
 #'
 #' @export
 create_timeseries <- function(CTX, name = 'ts') {

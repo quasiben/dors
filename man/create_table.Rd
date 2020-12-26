@@ -7,11 +7,11 @@
 create_table(conn, name, df)
 }
 \arguments{
-\item{object}{connection object}
+\item{conn}{object connection object}
 
-\item{character}{name of the table}
+\item{name}{character name of the table}
 
-\item{dobject}{data frame object or distributed data frame to write to the table}
+\item{df}{object data frame object or distributed data frame to write to the table}
 }
 \description{
 Create Table

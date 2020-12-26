@@ -42,6 +42,7 @@ setMethod(
 #' @rdname DBI
 #' @inheritParams DBI::dbConnect
 #' @param CTX character (dask or blazing)
+#' @param SCHEDULER character External SCHEDULER (default: FALSE)
 #' @export
 setMethod(
   "dbConnect", "DORSDriver",

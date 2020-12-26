@@ -120,6 +120,8 @@ object (in order to clone an existing connection).}
 
 \item{CTX}{character (dask or blazing)}
 
+\item{SCHEDULER}{character External SCHEDULER (default: FALSE)}
+
 \item{dbObj}{A object inheriting from \linkS4class{DBIDriver}
 or \linkS4class{DBIConnection}}
 
