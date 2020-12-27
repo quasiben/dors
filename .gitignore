@@ -4,6 +4,7 @@
 .Ruserdata
 ..Rcheck/
 *.Rcheck/
+check/
 
 # python
 dask-worker-space/

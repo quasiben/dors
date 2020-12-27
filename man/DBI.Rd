@@ -13,6 +13,7 @@
 \alias{DORSConnection-class}
 \alias{show,DORSConnection-method}
 \alias{dbIsValid,DORSConnection-method}
+\alias{dbDisconnect,DORSConnection-method}
 \alias{dbSendQuery,DORSConnection,character-method}
 \alias{dbSendStatement,DORSConnection,character-method}
 \alias{dbDataType,DORSConnection,ANY-method}
@@ -56,6 +57,8 @@
 \S4method{show}{DORSConnection}(object)
 
 \S4method{dbIsValid}{DORSConnection}(dbObj, ...)
+
+\S4method{dbDisconnect}{DORSConnection}(conn, ...)
 
 \S4method{dbSendQuery}{DORSConnection,character}(conn, statement, ...)
 

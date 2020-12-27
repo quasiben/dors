@@ -88,10 +88,9 @@ setMethod(
     })
   })
 
-#' #' @rdname DBI
-#' #' @inheritParams DBI::dbDisconnect
-#' @param DORSConnection object DB connection object
-#' #' @export
+#' @rdname DBI
+#' @inheritParams DBI::dbDisconnect
+#' @export
 setMethod(
   "dbDisconnect", "DORSConnection",
   function(conn, ...) {
