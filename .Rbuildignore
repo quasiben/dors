@@ -40,3 +40,4 @@
 ^LICENSE\.md$
 
 ^dask-worker-space/
+^.ipynb_checkpoints/

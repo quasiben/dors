@@ -7,7 +7,7 @@
 run_sql(res)
 }
 \arguments{
-\item{object}{res object}
+\item{res}{object res object containing sql statement and db connection}
 }
 \description{
 Run SQL through Dask/RAPIDS/Blazing Engine

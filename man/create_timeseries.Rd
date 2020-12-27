@@ -4,12 +4,12 @@
 \alias{create_timeseries}
 \title{Helper Function to Load Random Timeseries}
 \usage{
-create_timeseries(CTX, name = "timeseries")
+create_timeseries(CTX, name = "ts")
 }
 \arguments{
-\item{object}{DB context}
+\item{CTX}{object DB context}
 
-\item{character}{name of the table (default: timeseries)}
+\item{name}{character name of the table (default: ts)}
 }
 \description{
 Helper Function to Load Random Timeseries

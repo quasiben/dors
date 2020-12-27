@@ -4,10 +4,12 @@
 \alias{create_context}
 \title{Create Dask-SQL/Dask/Blazing Contexts}
 \usage{
-create_context(CTX)
+create_context(CTX, SCHEDULER = FALSE)
 }
 \arguments{
-\item{character}{choice of which context to create}
+\item{CTX}{character choice of which context to create}
+
+\item{SCHEDULER}{character External SCHEDULER (default: FALSE)}
 }
 \description{
 Create Dask-SQL/Dask/Blazing Contexts

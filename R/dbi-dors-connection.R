@@ -7,7 +7,8 @@ NULL
 
 #' Create Dask-SQL/Dask/Blazing Contexts
 #'
-#' @param character choice of which context to create
+#' @param CTX character choice of which context to create
+#' @param SCHEDULER character External SCHEDULER (default: FALSE)
 #'
 #' @export
 create_context <- function(CTX, SCHEDULER = FALSE) {
@@ -27,9 +28,9 @@ create_context <- function(CTX, SCHEDULER = FALSE) {
 
 #' Create Table
 #'
-#' @param object connection object
-#' @param character name of the table
-#' @param dobject data frame object or distributed data frame to write to the table
+#' @param conn object connection object
+#' @param name character name of the table
+#' @param df object data frame object or distributed data frame to write to the table
 #'
 #' @export
 create_table <- function(conn, name, df) {
@@ -41,6 +42,7 @@ create_table <- function(conn, name, df) {
 #' Create Dask SQL or BlazingSQL Connection
 #'
 #' @param CTX character (dask or blazing)
+#' @param SCHEDULER character
 #' @return \code{DORSConnection}
 DORSConnection <- function(CTX = "dask", SCHEDULER) {
   con <- create_context(CTX, SCHEDULER)
@@ -86,9 +88,9 @@ setMethod(
     })
   })
 
-#' #' @rdname DBI
-#' #' @inheritParams DBI::dbDisconnect
-#' #' @export
+#' @rdname DBI
+#' @inheritParams DBI::dbDisconnect
+#' @export
 setMethod(
   "dbDisconnect", "DORSConnection",
   function(conn, ...) {
