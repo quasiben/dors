@@ -1,5 +1,4 @@
 #' Dask or Rapids SQL for R
-"_PACKAGE"
 
 # Main DORS module
 DORS <- NULL
